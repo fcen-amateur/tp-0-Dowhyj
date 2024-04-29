@@ -7,3 +7,6 @@ streamlit
 watchdog
 # Para poder registrar el venv como "kernel" de jupyter
 ipykernel
+
+# Necesarios en algunos PRs
+scikit-learn
