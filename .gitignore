@@ -16,4 +16,9 @@
 *.nav
 *.snm
 *.toc
-/Notebooks/.ipynb_checkpoints
+**/.ipynb_checkpoints
+
+# GitHub Classroom files
+.github
+# Para uso del corrector
+.gitattributes
