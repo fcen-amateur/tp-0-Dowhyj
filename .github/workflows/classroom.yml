@@ -1,6 +1,5 @@
 name: Autograding Tests
 'on':
-- push
 - workflow_dispatch
 - repository_dispatch
 permissions:
@@ -14,16 +13,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Test de formatos
-      id: test-de-formatos
-      uses: education/autograding-python-grader@v1
+    - name: Formato de Retorno
+      id: formato-de-retorno
+      uses: classroom-resources/autograding-command-grader@v1
       with:
+        test-name: Formato de Retorno
+        setup-command: pip install -r requirements.txt && pip install pytest
+        command: pytest -W ignore::Warning
         timeout: 10
         max-score: 1
-        setup-command: pip install pytest && pytest test.py
     - name: Autograding Reporter
-      uses: education/autograding-grading-reporter@v1
+      uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TEST-DE-FORMATOS_RESULTS: "${{steps.test-de-formatos.outputs.result}}"
+        FORMATO-DE-RETORNO_RESULTS: "${{steps.formato-de-retorno.outputs.result}}"
       with:
-        runners: test-de-formatos
+        runners: formato-de-retorno
